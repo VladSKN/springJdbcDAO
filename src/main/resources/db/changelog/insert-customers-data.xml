@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="some ID_4" author="Semikin Vlad">
+
+        <comment>Inserting CUSTOMERS records</comment>
+        <insert tableName="CUSTOMERS">
+            <column name="name" value="vlad"/>
+            <column name="surname" value="semikin"/>
+            <column name="age" valueNumeric="33"/>
+            <column name="phone_number" valueNumeric="111111"/>
+        </insert>
+        <insert tableName="CUSTOMERS">
+            <column name="name" value="ivan"/>
+            <column name="surname" value="smirnov"/>
+            <column name="age" valueNumeric="25"/>
+            <column name="phone_number" valueNumeric="222222"/>
+        </insert>
+        <insert tableName="CUSTOMERS">
+            <column name="name" value="vasiliy"/>
+            <column name="surname" value="mikhailov"/>
+            <column name="age" valueNumeric="45"/>
+            <column name="phone_number" valueNumeric="333333"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
