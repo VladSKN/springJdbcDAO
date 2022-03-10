@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 public class UserRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final String script = read("db/myScript.sql");
 
     public UserRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    private final String script = read("db/myScript.sql");
 
     public List<String> getProductName(String name) {
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("name", name);
