@@ -1,4 +1,4 @@
-SELECT product_name
-FROM ORDERS O
-         JOIN CUSTOMERS C on C.id = O.id
-WHERE name = LOWER('vlad');
+select o
+from Order o
+         join Customer c on c.id = o.customerId
+where c.name = lower(:name)

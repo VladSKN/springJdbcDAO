@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.netology.springjdbcdao.entity.Order;
 import ru.netology.springjdbcdao.repository.UserRepository;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class CustomerController {
     }
 
     @GetMapping("/fetch-product")
-    public List<String> getAuthorities(@RequestParam("name") String name) {
+    public List<Order> getAuthorities(@RequestParam("name") String name) {
         return userRepository.getProductName(name);
     }
 }

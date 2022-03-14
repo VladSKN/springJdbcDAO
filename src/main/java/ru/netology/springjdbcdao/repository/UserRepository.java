@@ -1,11 +1,11 @@
 package ru.netology.springjdbcdao.repository;
 
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import ru.netology.springjdbcdao.entity.Order;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,18 +16,15 @@ import java.util.stream.Collectors;
 @Repository
 public class UserRepository {
 
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    @PersistenceContext
+    private EntityManager entityManager;
+
     private final String script = read("db/myScript.sql");
 
-    public UserRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-    }
-
-
-    public List<String> getProductName(String name) {
-        SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("name", name);
-        return namedParameterJdbcTemplate.query(script, namedParameters,
-                (resultSet, rowNum) -> (resultSet.getString("product_name")));
+    public List<Order> getProductName(String name) {
+        return entityManager.createQuery(script)
+                .setParameter("name", name)
+                .getResultList();
     }
 
     private static String read(String scriptFileName) {
